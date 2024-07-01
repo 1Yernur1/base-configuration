@@ -15,7 +15,7 @@ const BaseLayout = async ({
 	const messages = await getMessages();
 	return (
 		<ClerkProvider>
-			<html lang={locale}>
+			<html lang={locale} suppressHydrationWarning>
 				<body className="h-screen flex justify-center items-center">
 					<NextIntlClientProvider messages={messages}>
 						<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
