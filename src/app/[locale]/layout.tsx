@@ -1,6 +1,8 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "../providers";
+
 import "./index.scss";
 
 const BaseLayout = async ({
@@ -14,8 +16,12 @@ const BaseLayout = async ({
 	return (
 		<ClerkProvider>
 			<html lang={locale}>
-				<body className="h-screen bg-black text-white flex justify-center items-center">
-					<NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+				<body className="h-screen flex justify-center items-center">
+					<NextIntlClientProvider messages={messages}>
+						<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+							{children}
+						</ThemeProvider>
+					</NextIntlClientProvider>
 				</body>
 			</html>
 		</ClerkProvider>
