@@ -1,28 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
-import { dark } from "@clerk/themes";
 import { SignIn } from "@clerk/nextjs";
-import type { BaseThemeTaggedType } from "@clerk/types";
+import { useClerkTheme } from "@/shared";
 
 const SignInPage = () => {
-	const { resolvedTheme } = useTheme();
-	const [clerkTheme, setClerkTheme] = useState<BaseThemeTaggedType | undefined>();
+	const clerkTheme = useClerkTheme();
 
-	useEffect(() => {
-		setClerkTheme(resolvedTheme === "dark" ? dark : undefined);
-	}, [resolvedTheme]);
-
-	if (!clerkTheme) return null;
+	if (!clerkTheme) {
+		return null;
+	}
 
 	return (
 		<div className="h-screen flex justify-center items-center">
-			<SignIn
-				appearance={{
-					baseTheme: clerkTheme,
-				}}
-			/>
+			<SignIn appearance={{ baseTheme: clerkTheme }} />
 		</div>
 	);
 };

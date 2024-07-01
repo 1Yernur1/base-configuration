@@ -1,0 +1,1 @@
+export { useClerkTheme } from "./hooks";

@@ -1,0 +1,2 @@
+export { useClerkTheme } from "./lib";
+
