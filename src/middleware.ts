@@ -9,7 +9,6 @@ const intlMiddleware = createMiddleware({
 const isPublicRoute = createRouteMatcher(["/:locale/sign-in(.*)", "/:locale/sign-up(.*)"]);
 
 export default clerkMiddleware((auth, req) => {
-	console.log("req: ", req.url);
 	const locale = req.nextUrl.pathname.split("/")[1] || "ru";
 	const redirectUrl = new URL(`/${locale}/sign-in?callbackUrl=${encodeURIComponent(req.url)}`, req.url).toString();
 
